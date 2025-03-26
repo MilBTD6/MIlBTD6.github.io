@@ -1,30 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Functionality
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    const footerLinks = document.querySelector('.footer-links');
     
-    if (mobileMenuBtn && navLinks) {
-        // Toggle menu on button click
+    if (mobileMenuBtn && footerLinks) {
+        // Scroll to footer menu on button click
         mobileMenuBtn.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from bubbling up
-            navLinks.classList.toggle('active');
-            this.classList.toggle('active');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
-            }
-        });
-
-        // Close menu when clicking a link
-        const navLinksList = navLinks.querySelectorAll('.nav-link');
-        navLinksList.forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
+            e.preventDefault();
+            footerLinks.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         });
     }
