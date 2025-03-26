@@ -19,6 +19,7 @@ body {
     padding-top: 90px; /* Height of the nav bar */
     background-color: var(--primary-black);
     color: var(--text-light);
+    min-height: 100vh;
 }
 
 /* Navigation */
@@ -230,6 +231,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    background-color: var(--primary-black);
 }
 
 /* About Section */
@@ -282,41 +284,123 @@ body {
 
 .testimonials h2 {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-size: 36px;
     color: var(--primary-gold);
 }
 
-.testimonials-grid {
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-size: 18px;
+}
+
+.google-reviews {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.overall-rating {
+    text-align: center;
+    background: linear-gradient(145deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+}
+
+.rating-number {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.stars {
+    font-size: 2em;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.rating-count {
+    color: var(--text-dark);
+    font-size: 1.2em;
+}
+
+.reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    margin-bottom: 40px;
 }
 
-.testimonial {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.review-card {
+    background: linear-gradient(145deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.testimonial-content {
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.testimonial-author {
+.review-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
-.testimonial-author strong {
-    color: #333;
+.reviewer-name {
+    font-weight: bold;
+    color: var(--text-dark);
 }
 
-.testimonial-author span {
-    color: #666;
-    font-size: 14px;
+.review-date {
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+.review-stars {
+    color: var(--text-dark);
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.review-text {
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.google-maps-link {
+    text-align: center;
+}
+
+.google-maps-link .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--accent-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.google-maps-link .btn:hover {
+    background: #0091cc;
+}
+
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .rating-number {
+        font-size: 3em;
+    }
+    
+    .stars {
+        font-size: 1.8em;
+    }
 }
 
 /* Contact Section */
@@ -422,6 +506,9 @@ body {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .map-box h2 {
@@ -433,17 +520,20 @@ body {
 
 .map-container {
     width: 100%;
-    height: 100%;
-    min-height: 400px;
+    flex: 1;
     border-radius: 8px;
     overflow: hidden;
+    position: relative;
 }
 
 .map-container iframe {
     width: 100%;
     height: 100%;
-    min-height: 400px;
+    position: absolute;
+    top: 0;
+    left: 0;
     border: none;
+    border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -452,9 +542,9 @@ body {
         gap: 30px;
     }
 
-    .map-container,
-    .map-container iframe {
-        min-height: 300px;
+    .map-container {
+        height: 300px;
+        position: relative;
     }
 }
 
@@ -538,13 +628,13 @@ footer {
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 100px 0;
+    padding: 50px 0;
     text-align: center;
 }
 
 .page-header h1 {
     font-size: 2.5em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Offer Page */
@@ -820,29 +910,6 @@ footer {
     margin-bottom: 40px;
 }
 
-.overall-rating {
-    background: linear-gradient(145deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
-    color: var(--text-dark);
-}
-
-.stars {
-    font-size: 2em;
-    color: #ffd700;
-    margin-bottom: 10px;
-}
-
-.rating-number {
-    color: var(--text-dark);
-    font-size: 2.5em;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.rating-count {
-    color: var(--text-dark);
-    font-size: 1.1em;
-}
-
 .testimonial-placeholder {
     background: linear-gradient(145deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
     color: var(--text-dark);
@@ -850,26 +917,6 @@ footer {
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.google-maps-link {
-    text-align: center;
-    margin-top: 40px;
-}
-
-.google-maps-link .btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #4285f4;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: background 0.3s;
-    font-weight: bold;
-}
-
-.google-maps-link .btn:hover {
-    background: #3367d6;
 }
 
 .why-choose-us {
@@ -936,60 +983,6 @@ footer {
 .star-rating .star:hover,
 .star-rating .star.active {
     color: #ffd700;
-}
-
-.add-testimonial {
-    margin-top: 60px;
-    text-align: center;
-}
-
-.add-testimonial h2 {
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.add-testimonial p {
-    color: #666;
-    margin-bottom: 30px;
-}
-
-.testimonial-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-form .form-group {
-    margin-bottom: 20px;
-}
-
-.testimonial-form input,
-.testimonial-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-.testimonial-form textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-.testimonial-form .rating-input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-.testimonial-form label {
-    color: #333;
-    font-weight: bold;
 }
 
 /* Requirements Page - New Layout */
@@ -1168,14 +1161,14 @@ footer {
     max-width: 800px;
     margin: 0 auto;
     padding: 40px;
-    background: white;
+    background: linear-gradient(145deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
 .contact-info-centered h2 {
-    color: #333;
+    color: var(--text-dark);
     margin-bottom: 30px;
     font-size: 2em;
 }
@@ -1186,7 +1179,7 @@ footer {
     justify-content: center;
     margin-bottom: 30px;
     padding: 20px;
-    background: #f8f9fa;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     transition: transform 0.3s ease;
 }
@@ -1198,7 +1191,7 @@ footer {
 .contact-info-centered .icon {
     font-size: 2em;
     margin-right: 20px;
-    color: #007bff;
+    color: var(--text-dark);
 }
 
 .contact-info-centered .info-text {
@@ -1206,13 +1199,13 @@ footer {
 }
 
 .contact-info-centered h3 {
-    color: #007bff;
+    color: var(--text-dark);
     margin-bottom: 5px;
     font-size: 1.2em;
 }
 
 .contact-info-centered p {
-    color: #666;
+    color: var(--text-dark);
     line-height: 1.6;
     margin: 0;
 }
