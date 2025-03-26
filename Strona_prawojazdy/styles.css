@@ -54,22 +54,29 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 10px;
-    z-index: 1001; /* Ensure button is above nav links */
+    padding: 15px;
+    z-index: 1001;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .mobile-menu-btn span {
     display: block;
-    width: 25px;
+    width: 30px;
     height: 3px;
     background-color: #333;
-    margin: 5px 0;
+    margin: 6px auto;
     transition: all 0.3s ease;
+    border-radius: 3px;
 }
 
 /* Mobile Menu Button Active State */
 .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(6px, 6px);
 }
 
 .mobile-menu-btn.active span:nth-child(2) {
@@ -77,18 +84,19 @@ body {
 }
 
 .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 @media (max-width: 768px) {
     .mobile-menu-btn {
         display: block;
+        margin-right: 10px;
     }
 
     .nav-links {
         display: none;
         position: fixed;
-        top: 80px; /* Match the mobile nav height */
+        top: 80px;
         left: 0;
         right: 0;
         background: white;
@@ -98,16 +106,22 @@ body {
         z-index: 1000;
         max-height: calc(100vh - 80px);
         overflow-y: auto;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
     .nav-links.active {
         display: flex;
+        opacity: 1;
+        visibility: visible;
     }
 
     .nav-link {
         padding: 15px 0;
         text-align: center;
         width: 100%;
+        font-size: 16px;
     }
 
     .main-nav {
