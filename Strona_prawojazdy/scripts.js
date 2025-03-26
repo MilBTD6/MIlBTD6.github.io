@@ -35,6 +35,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Mobile Menu Functionality
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    }
 });
 
 // Smooth Scrolling for Navigation Links
@@ -61,6 +72,32 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
+        }
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (navLinks && mobileMenuBtn) {
+        if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        }
+    }
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+        const navLinks = document.querySelector('.nav-links');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (navLinks && mobileMenuBtn) {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
         }
     });
 });

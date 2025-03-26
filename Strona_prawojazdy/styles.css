@@ -23,6 +23,7 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
+    height: 90px; /* Fixed height for the nav bar */
 }
 
 .logo-container #logo {
@@ -45,6 +46,69 @@ body {
 
 .nav-link:hover {
     color: #ff0000;
+}
+
+/* Mobile Navigation */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Ensure button is above nav links */
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed; /* Changed from absolute to fixed */
+        top: 90px; /* Match the nav bar height */
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+        max-height: calc(100vh - 90px); /* Prevent overflow */
+        overflow-y: auto; /* Allow scrolling if needed */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 15px 0; /* Increased padding for better touch targets */
+        text-align: center;
+        width: 100%; /* Full width for better touch targets */
+    }
+
+    .main-nav {
+        padding: 15px 20px;
+        height: 80px; /* Slightly smaller height on mobile */
+    }
+
+    .logo-container #logo {
+        height: 50px;
+    }
+
+    body {
+        padding-top: 80px; /* Match the mobile nav height */
+    }
 }
 
 /* Hero Section */
