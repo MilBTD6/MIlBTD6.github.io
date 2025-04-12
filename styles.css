@@ -1,6 +1,6 @@
 :root {
-    --primary-gold: #b68b4c;
-    --primary-dark-gold: #8b6b3d;
+    --primary-gold: #F5F5DC;
+    --primary-dark-gold: #F5F5DC;
     --primary-black: #1a1a1a;
     --accent-blue: #00b4ff;
     --text-light: #ffffff;
@@ -201,7 +201,7 @@ body {
     width: 100%;
     background: linear-gradient(180deg, #fdc026 0%, #8B6914 100%);
     padding: 10px 20px;
-    border: 2px solid #c69320;
+    border: 2px solid #F5F5DC;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
