@@ -1016,6 +1016,7 @@ footer {
 .process-timeline {
     background: linear-gradient(145deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
     padding: 30px;
+    margin-bottom: 30px;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     color: var(--text-dark);
@@ -1248,6 +1249,7 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-bottom: 30px;
+    border-radius: 10px;
 }
 
 .detail-box {
