@@ -146,10 +146,33 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: auto;
-    background: var(--primary-black);
-    padding: 40px 0;
-    margin-top: 0;
+    height: calc(100vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('source/nowe_logo.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position-y: 8%;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 2rem;
+    color: var(--text-light);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    max-width: 1200px;
+    line-height: 1.2;
+    position: relative;
+    z-index: 2;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-1.5em);
 }
 
 .hero-slide {
@@ -716,8 +739,10 @@ footer {
         display: none;
     }
     
-    .hero h1 {
-        font-size: 36px;
+    .hero {
+        height: calc(80vh - 90px);
+        padding: 0 15px;
+        margin-top: calc(90px - 1.2em);
     }
 }
 
@@ -1457,5 +1482,15 @@ footer {
 @media (max-width: 768px) {
     .details-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        margin-bottom: 1.5rem;
+        white-space: normal;
+        padding: 0 20px;
+        transform: translateY(-1.2em);
     }
 }
