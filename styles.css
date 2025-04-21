@@ -128,6 +128,10 @@ body {
         margin: 15px 0;
         font-size: 18px;
     }
+    
+    .main-nav {
+        padding: 15px 20px;
+    }
 }
 
 /* Hero Section */
