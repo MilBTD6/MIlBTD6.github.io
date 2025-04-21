@@ -149,7 +149,7 @@ body {
     height: calc(100vh);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     padding: 0 20px;
@@ -742,7 +742,14 @@ footer {
     .hero {
         height: calc(80vh - 90px);
         padding: 0 15px;
-        margin-top: calc(90px - 1.2em);
+    }
+
+    .hero h1 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        margin-top: 12vh;
+        margin-bottom: 1.5rem;
+        white-space: normal;
+        padding: 0 20px;
     }
 }
 
@@ -1482,15 +1489,5 @@ footer {
 @media (max-width: 768px) {
     .details-grid {
         grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-        margin-bottom: 1.5rem;
-        white-space: normal;
-        padding: 0 20px;
-        transform: translateY(-1.2em);
     }
 }
