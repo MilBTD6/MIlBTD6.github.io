@@ -77,22 +77,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listeners to dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            console.log('Dot clicked:', index); // Debug log
             showSlide(index);
         });
     });
 
     // Show the first slide by default
     showSlide(0);
-
-    // Optional: Auto-advance slides every 5 seconds
-    /*
-    let currentSlide = 0;
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }, 5000);
-    */
 });
 
 // Smooth Scrolling for Navigation Links
