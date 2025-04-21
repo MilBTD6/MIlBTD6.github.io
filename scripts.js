@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Functionality
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const footerLinks = document.querySelector('.footer-links');
+    const navLinks = document.querySelector('.nav-links');
     
     if (mobileMenuBtn && footerLinks) {
         // Scroll to footer menu on button click
@@ -11,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth',
                 block: 'start'
             });
+        });
+    }
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
         });
     }
 
@@ -50,6 +58,53 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Slider functionality
+    const dots = document.querySelectorAll('.slider-dots .dot');
+    const slides = document.querySelectorAll('.slide');
+
+    // Function to show a specific slide
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+            slide.style.opacity = '0';
+            slide.style.visibility = 'hidden';
+        });
+
+        // Remove active class from all dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+
+        // Show the selected slide
+        slides[index].classList.add('active');
+        slides[index].style.opacity = '1';
+        slides[index].style.visibility = 'visible';
+        
+        // Activate the corresponding dot
+        dots[index].classList.add('active');
+    }
+
+    // Add click event listeners to dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            console.log('Dot clicked:', index); // Debug log
+            showSlide(index);
+        });
+    });
+
+    // Show the first slide by default
+    showSlide(0);
+
+    // Optional: Auto-advance slides every 5 seconds
+    /*
+    let currentSlide = 0;
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }, 5000);
+    */
 });
 
 // Smooth Scrolling for Navigation Links
