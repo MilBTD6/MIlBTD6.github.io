@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
         });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
     }
 
     // Testimonial Form Handling
@@ -32,10 +40,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const starContainer = document.querySelector('.star-rating');
     if (starContainer) {
         const stars = starContainer.querySelectorAll('.star');
+        const ratingInput = document.querySelector('input[name="rating"]');
         
         stars.forEach(star => {
             star.addEventListener('click', function() {
                 const rating = this.getAttribute('data-rating');
+                if (ratingInput) {
+                    ratingInput.value = rating;
+                }
                 stars.forEach(s => {
                     if (s.getAttribute('data-rating') <= rating) {
                         s.classList.add('active');
@@ -50,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Slider functionality
     const dots = document.querySelectorAll('.slider-dots .dot');
     const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    let slideInterval;
 
     // Function to show a specific slide
     function showSlide(index) {
@@ -72,17 +86,34 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Activate the corresponding dot
         dots[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+
+    // Function to advance to next slide
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % slides.length;
+        showSlide(nextIndex);
     }
 
     // Add click event listeners to dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             showSlide(index);
+            // Reset the interval when manually changing slides
+            clearInterval(slideInterval);
+            startSlideInterval();
         });
     });
 
-    // Show the first slide by default
+    // Start auto-advance interval
+    function startSlideInterval() {
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    // Show the first slide by default and start auto-advance
     showSlide(0);
+    startSlideInterval();
 });
 
 // Smooth Scrolling for Navigation Links
