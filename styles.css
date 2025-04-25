@@ -1392,7 +1392,7 @@ footer {
     color: var(--primary-gold);
 }
 
-.details-grid {
+.course-details .details-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
@@ -1445,7 +1445,13 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .details-grid {
+    .course-details .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .course-details .details-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -1463,7 +1469,7 @@ footer {
     color: var(--primary-gold);
 }
 
-.details-grid {
+.offer-details .details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
@@ -1504,7 +1510,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .details-grid {
+    .offer-details .details-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -1572,7 +1578,7 @@ footer {
     margin-bottom: 40px;
 }
 
-.details-grid {
+.requirements .details-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
@@ -1610,7 +1616,7 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .details-grid {
+    .requirements .details-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
