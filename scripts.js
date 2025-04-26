@@ -44,16 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Prevent clicks inside the menu from closing it
-        navLinks.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-
-        // Touch event for menu items (for mobile)
-        navLinks.addEventListener('touchstart', function(e) {
-            e.stopPropagation();
-        });
-
         // Handle menu item clicks
         const menuItems = navLinks.querySelectorAll('.nav-link');
         menuItems.forEach(item => {
