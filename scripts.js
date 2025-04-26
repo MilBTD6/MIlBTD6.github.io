@@ -123,22 +123,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Hero Slider functionality
+    const sliderContainer = document.querySelector('.slider-container');
     const dots = document.querySelectorAll('.slider-dots .dot');
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
-    let slideInterval;
+    let slideInterval = null;
 
-    if (slides.length > 0) {
+    if (slides.length > 0 && dots.length > 0) {
         // Function to show a specific slide
         function showSlide(index) {
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
+            // Ensure index is within bounds
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
 
-            dots.forEach(dot => {
-                dot.classList.remove('active');
-            });
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
 
+            // Add active class to current slide and dot
             slides[index].classList.add('active');
             dots[index].classList.add('active');
             
@@ -147,26 +149,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Function to advance to next slide
         function nextSlide() {
-            const nextIndex = (currentSlide + 1) % slides.length;
-            showSlide(nextIndex);
+            showSlide(currentSlide + 1);
         }
 
         // Add click event listeners to dots
         dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
+            dot.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 showSlide(index);
-                clearInterval(slideInterval);
-                startSlideInterval();
+                resetInterval();
             });
         });
 
-        // Start auto-advance interval
-        function startSlideInterval() {
-            slideInterval = setInterval(nextSlide, 8000); // Change slide every 8 seconds
+        // Function to reset the interval
+        function resetInterval() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+            }
+            slideInterval = setInterval(nextSlide, 8000);
         }
 
-        // Show the first slide by default and start auto-advance
+        // Pause on hover
+        if (sliderContainer) {
+            sliderContainer.addEventListener('mouseenter', function() {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                }
+            });
+
+            sliderContainer.addEventListener('mouseleave', function() {
+                resetInterval();
+            });
+        }
+
+        // Initialize the slider
         showSlide(0);
-        startSlideInterval();
+        resetInterval();
     }
 });
