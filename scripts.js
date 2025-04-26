@@ -4,41 +4,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
     
     if (mobileMenuBtn && navLinks) {
-        // Add touch event listener for better mobile support
+        // Function to toggle menu state
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        }
+
+        // Function to close menu
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        }
+
+        // Touch event for menu button (for mobile devices)
         mobileMenuBtn.addEventListener('touchstart', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.classList.toggle('active');
+            toggleMenu();
         });
 
-        // Keep click event for desktop
+        // Click event for menu button (for desktop)
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.classList.toggle('active');
+            toggleMenu();
         });
 
         // Close menu when clicking/touching outside
         document.addEventListener('click', function(e) {
             if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
+                closeMenu();
             }
         });
 
-        // Add touch event for outside clicks
+        // Touch event for outside clicks (for mobile)
         document.addEventListener('touchstart', function(e) {
             if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
+                closeMenu();
             }
         });
 
         // Prevent clicks inside the menu from closing it
         navLinks.addEventListener('click', function(e) {
             e.stopPropagation();
+        });
+
+        // Touch event for menu items (for mobile)
+        navLinks.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        });
+
+        // Handle menu item clicks
+        const menuItems = navLinks.querySelectorAll('.nav-link');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                closeMenu();
+            });
         });
     }
 
