@@ -70,8 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide all slides
         slides.forEach(slide => {
             slide.classList.remove('active');
-            slide.style.opacity = '0';
-            slide.style.visibility = 'hidden';
         });
 
         // Remove active class from all dots
@@ -81,8 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Show the selected slide
         slides[index].classList.add('active');
-        slides[index].style.opacity = '1';
-        slides[index].style.visibility = 'visible';
         
         // Activate the corresponding dot
         dots[index].classList.add('active');
@@ -108,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start auto-advance interval
     function startSlideInterval() {
-        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        slideInterval = setInterval(nextSlide, 8000); // Change slide every 8 seconds
     }
 
     // Show the first slide by default and start auto-advance
