@@ -527,9 +527,10 @@ body {
 }
 
 .testimonials .container {
-    max-width: var(--container-width);
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
 }
 
 .testimonials h2 {
