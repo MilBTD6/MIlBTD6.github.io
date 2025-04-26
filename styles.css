@@ -1,4 +1,4 @@
-/* ===== Base Styles ===== */
+/* ===== Base Variables ===== */
 :root {
     --primary-gold: #F2F2F2;
     --primary-dark-gold: #F2F2F2;
@@ -13,12 +13,137 @@
     --spacing-small: 15px;
     --spacing-medium: 30px;
     --spacing-large: 60px;
+    --border-radius: 8px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --gradient-gold: linear-gradient(145deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
+    --z-index-dropdown: 1000;
+    --z-index-sticky: 1020;
+    --z-index-fixed: 1030;
+    --z-index-modal-backdrop: 1040;
+    --z-index-modal: 1050;
+    --z-index-popover: 1060;
+    --z-index-tooltip: 1070;
+}
+
+/* ===== Base Section Styles ===== */
+.section {
+    padding: var(--spacing-large) 0;
+    background: var(--primary-black);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-large);
+    font-size: 2.5em;
+    color: var(--primary-gold);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-medium);
+    font-size: 1.2em;
+}
+
+/* ===== Container Styles ===== */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-medium);
+}
+
+/* ===== Card/Box Styles ===== */
+.card {
+    background: var(--gradient-gold);
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--text-dark);
+}
+
+.card-title {
+    color: var(--text-dark);
+    font-size: 1.5em;
+    margin-bottom: var(--spacing-small);
+    text-align: center;
+}
+
+/* ===== Button Styles ===== */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0091cc;
+    transform: translateY(-2px);
+}
+
+/* ===== Link Styles ===== */
+.link {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.link:hover {
+    color: var(--accent-blue);
+}
+
+/* ===== Icon Styles ===== */
+.icon {
+    font-size: 24px;
+    color: var(--text-dark);
+    transition: transform var(--transition-speed);
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+/* ===== Responsive Breakpoints ===== */
+@media (max-width: 1024px) {
+    :root {
+        --container-width: 960px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --container-width: 720px;
+        --spacing-large: 40px;
+        --spacing-medium: 20px;
+    }
+    
+    .section-title {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --container-width: 100%;
+        --spacing-large: 30px;
+        --spacing-medium: 15px;
+    }
+    
+    .section-title {
+        font-size: 1.8em;
+    }
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all var(--transition-speed) ease;
 }
 
 body {
@@ -341,17 +466,6 @@ body {
     font-size: 1.2em;
 }
 
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    background-color: var(--primary-black);
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
 /* About Section */
 .about {
     padding: 40px 0;
@@ -413,8 +527,7 @@ body {
 }
 
 .testimonials .container {
-    width: 100%;
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -424,13 +537,6 @@ body {
     margin-bottom: 40px;
     font-size: 2.5em;
     color: var(--text-light);
-}
-
-.section-subtitle {
-    text-align: center;
-    color: var(--text-light);
-    margin-bottom: 40px;
-    font-size: 18px;
 }
 
 .google-reviews {
@@ -550,7 +656,7 @@ body {
 }
 
 .contact .container {
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
@@ -587,6 +693,7 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 15px;
+    transition: transform var(--transition-speed);
 }
 
 .info-item:hover {
@@ -595,7 +702,6 @@ body {
 
 .info-item .icon {
     font-size: 24px;
-    margin-right: 15px;
     color: var(--text-dark);
 }
 
@@ -629,12 +735,10 @@ body {
 }
 
 .map-container {
-    flex: 1;
+    position: relative;
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
-    position: relative;
-    min-height: 400px;
 }
 
 .map-container iframe {
@@ -1436,7 +1540,7 @@ footer {
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed);
 }
 
 .contact-info-centered .info-item:hover {
@@ -1680,7 +1784,7 @@ footer {
 }
 
 .requirements .container {
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -1796,5 +1900,228 @@ footer {
     
     .phone-call-section .phone-call-content p {
         font-size: 1em;
+    }
+}
+
+/* ===== Section-specific Styles ===== */
+.about,
+.testimonials,
+.contact,
+.requirements,
+.phone-call-section {
+    composes: section;
+}
+
+.about h2,
+.testimonials h2,
+.contact h2,
+.requirements h2,
+.phone-call-section h2 {
+    composes: section-title;
+}
+
+.about .container,
+.testimonials .container,
+.contact .container,
+.requirements .container,
+.phone-call-section .container {
+    composes: container;
+}
+
+/* Feature Box */
+.feature-box {
+    composes: card;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-box h3 {
+    composes: card-title;
+}
+
+/* Info Items */
+.info-item {
+    composes: card;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-small);
+}
+
+.info-item .icon {
+    composes: icon;
+}
+
+/* Map Containers */
+.map-container,
+.map-opinions-container {
+    composes: card;
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+}
+
+/* Contact Info */
+.contact-info-box {
+    composes: card;
+}
+
+.contact-info-box h2 {
+    composes: card-title;
+}
+
+/* Footer */
+.footer {
+    composes: section;
+    border-top: 1px solid var(--primary-gold);
+}
+
+.footer-content {
+    composes: container;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-large);
+    justify-content: space-between;
+}
+
+.footer-info,
+.footer-links {
+    composes: card;
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-info h3,
+.footer-links h3 {
+    composes: card-title;
+}
+
+.footer-links a {
+    composes: link;
+}
+
+/* Navigation */
+.nav-link {
+    composes: link;
+    color: var(--text-dark);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-blue);
+}
+
+/* Buttons */
+.feature-button {
+    composes: btn;
+}
+
+.google-maps-link .btn {
+    composes: btn;
+}
+
+/* Standardize hover effects */
+.card:hover,
+.btn:hover,
+.link:hover,
+.icon:hover {
+    transform: translateY(-2px);
+}
+
+/* Standardize focus states */
+.btn:focus,
+.link:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Standardize active states */
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Standardize disabled states */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Standardize loading states */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: inherit;
+}
+
+/* Standardize error states */
+.error {
+    color: #ff4444;
+    border-color: #ff4444;
+}
+
+/* Standardize success states */
+.success {
+    color: #00C851;
+    border-color: #00C851;
+}
+
+/* Standardize warning states */
+.warning {
+    color: #ffbb33;
+    border-color: #ffbb33;
+}
+
+/* Standardize info states */
+.info {
+    color: #33b5e5;
+    border-color: #33b5e5;
+}
+
+/* Standardize animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Standardize print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+    
+    .btn,
+    .link {
+        text-decoration: none !important;
     }
 }
