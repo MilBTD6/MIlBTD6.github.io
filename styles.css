@@ -405,7 +405,7 @@ body {
 
 /* Testimonials Section */
 .testimonials {
-    padding: var(--spacing-large) 0;
+    padding: var(--spacing-small) 0;
     background: var(--primary-black);
     display: flex;
     flex-direction: column;
@@ -542,7 +542,7 @@ body {
 
 /* Contact Section */
 .contact {
-    padding: 80px 0;
+    padding: 0 0 var(--spacing-large) 0;
     background: var(--primary-black);
     display: flex;
     flex-direction: column;
@@ -1736,4 +1736,59 @@ footer {
     .details-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Phone Call Section */
+.phone-call-section {
+    padding: var(--spacing-medium) 0;
+    background: var(--primary-black);
+    text-align: center;
+}
+
+.phone-call-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.phone-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 2em;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.phone-link:hover {
+    color: var(--accent-blue);
+}
+
+.phone-link i {
+    font-size: 1.2em;
+}
+
+.phone-call-content p {
+    color: var(--text-light);
+    font-size: 1.2em;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .phone-link {
+        font-size: 1.5em;
+    }
+    
+    .phone-call-content p {
+        font-size: 1em;
+    }
+}
+
+.phone-call-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: var(--text-light);
 }
