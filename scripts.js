@@ -6,13 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuBtn && navLinks) {
         // Add touch event listener for better mobile support
         mobileMenuBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Prevent any default touch behavior
+            e.preventDefault();
+            e.stopPropagation();
             navLinks.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
         });
 
         // Keep click event for desktop
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             navLinks.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
         });
@@ -31,6 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
             }
+        });
+
+        // Prevent clicks inside the menu from closing it
+        navLinks.addEventListener('click', function(e) {
+            e.stopPropagation();
         });
     }
 
