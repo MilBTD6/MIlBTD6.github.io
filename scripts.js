@@ -3,54 +3,74 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     
-    // Only initialize mobile menu if we're on a mobile device
-    if (mobileMenuBtn && navLinks && window.innerWidth <= 768) {
+    // Check if we're on a mobile device
+    const isMobile = window.innerWidth <= 768;
+    
+    if (mobileMenuBtn && navLinks && isMobile) {
+        let isMenuOpen = false;
+
         // Function to toggle menu state
         function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
             navLinks.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
         }
 
         // Function to close menu
         function closeMenu() {
-            navLinks.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
+            if (isMenuOpen) {
+                isMenuOpen = false;
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         }
 
-        // Touch event for menu button (for mobile devices)
-        mobileMenuBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleMenu();
-        });
-
-        // Click event for menu button
+        // Handle menu button clicks
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             toggleMenu();
         });
 
-        // Close menu when clicking/touching outside
-        document.addEventListener('click', function(e) {
-            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                closeMenu();
-            }
-        });
-
-        // Touch event for outside clicks (for mobile)
-        document.addEventListener('touchstart', function(e) {
-            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                closeMenu();
-            }
-        });
-
         // Handle menu item clicks
         const menuItems = navLinks.querySelectorAll('.nav-link');
         menuItems.forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
                 closeMenu();
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (isMenuOpen && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Handle touch events
+        document.addEventListener('touchstart', function(e) {
+            if (isMenuOpen && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Handle escape key
+        document.addEventListener('keydown', function(e) {
+            if (isMenuOpen && e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && isMenuOpen) {
+                closeMenu();
+            }
         });
     }
 

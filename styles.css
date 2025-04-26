@@ -185,7 +185,7 @@ body {
 
 /* Mobile Navigation */
 .mobile-menu-btn {
-    display: none;  /* Hidden by default */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -200,7 +200,7 @@ body {
     height: 3px;
     background-color: var(--text-dark);
     margin: 5px 0;
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s ease;
 }
 
 .mobile-menu-btn.active span:nth-child(1) {
@@ -238,24 +238,28 @@ body {
 /* Mobile Styles */
 @media (max-width: 768px) {
     .mobile-menu-btn {
-        display: block;  /* Show on mobile */
+        display: block;
     }
 
     .nav-links {
-        display: none;  /* Hide by default on mobile */
+        display: none;
         position: fixed;
         top: 90px;
         left: 0;
         right: 0;
+        bottom: 0;
         background: var(--primary-gold);
         padding: 20px;
         flex-direction: column;
         gap: 15px;
         z-index: 1000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
 
     .nav-links.active {
-        display: flex;  /* Show when active on mobile */
+        display: flex;
+        animation: slideDown 0.3s ease-out;
     }
 
     .nav-link {
@@ -265,10 +269,22 @@ body {
         padding: 15px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         font-size: 16px;
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
     }
 
     .nav-link:last-child {
         border-bottom: none;
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 }
 
