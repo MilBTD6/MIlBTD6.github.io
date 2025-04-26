@@ -1745,14 +1745,20 @@ footer {
     text-align: center;
 }
 
-.phone-call-content {
+.phone-call-section .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.phone-call-section .phone-call-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
-.phone-link {
+.phone-call-section .phone-link {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1762,28 +1768,18 @@ footer {
     transition: color var(--transition-speed);
 }
 
-.phone-link:hover {
+.phone-call-section .phone-link:hover {
     color: var(--accent-blue);
 }
 
-.phone-link i {
+.phone-call-section .phone-link i {
     font-size: 1.2em;
 }
 
-.phone-call-content p {
+.phone-call-section .phone-call-content p {
     color: var(--text-light);
     font-size: 1.2em;
     margin: 0;
-}
-
-@media (max-width: 768px) {
-    .phone-link {
-        font-size: 1.5em;
-    }
-    
-    .phone-call-content p {
-        font-size: 1em;
-    }
 }
 
 .phone-call-section h2 {
@@ -1791,4 +1787,14 @@ footer {
     margin-bottom: 40px;
     font-size: 2.5em;
     color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .phone-call-section .phone-link {
+        font-size: 1.5em;
+    }
+    
+    .phone-call-section .phone-call-content p {
+        font-size: 1em;
+    }
 }
