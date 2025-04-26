@@ -210,6 +210,7 @@ body {
     cursor: pointer;
     padding: 10px;
     z-index: 1001;
+    position: relative;
 }
 
 .mobile-menu-btn span {
@@ -249,6 +250,7 @@ body {
         flex-direction: column;
         gap: 15px;
         transition: all var(--transition-speed) ease;
+        z-index: 1000;
     }
 
     .nav-links.active {
@@ -258,8 +260,9 @@ body {
     .nav-link {
         width: 100%;
         text-align: center;
-        padding: 10px;
+        padding: 15px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 16px;
     }
 
     .nav-link:last-child {

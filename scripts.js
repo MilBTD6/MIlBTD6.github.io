@@ -4,13 +4,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
     
     if (mobileMenuBtn && navLinks) {
+        // Add touch event listener for better mobile support
+        mobileMenuBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevent any default touch behavior
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        });
+
+        // Keep click event for desktop
         mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
         });
 
-        // Close menu when clicking outside
+        // Close menu when clicking/touching outside
         document.addEventListener('click', function(e) {
+            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
+
+        // Add touch event for outside clicks
+        document.addEventListener('touchstart', function(e) {
             if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
