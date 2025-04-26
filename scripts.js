@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     
-    if (mobileMenuBtn && navLinks) {
+    // Only initialize mobile menu if we're on a mobile device
+    if (mobileMenuBtn && navLinks && window.innerWidth <= 768) {
         // Function to toggle menu state
         function toggleMenu() {
             navLinks.classList.toggle('active');
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleMenu();
         });
 
-        // Click event for menu button (for desktop)
+        // Click event for menu button
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
