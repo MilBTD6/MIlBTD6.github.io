@@ -233,6 +233,40 @@ body {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 90px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, var(--primary-gold) 0%, var(--primary-dark-gold) 100%);
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+        transition: all var(--transition-speed) ease;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+}
+
 /* ===== Hero Section ===== */
 .hero {
     position: relative;
