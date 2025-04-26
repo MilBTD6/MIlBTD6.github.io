@@ -289,7 +289,7 @@ body {
     text-align: center;
     padding: 0 20px;
     margin-bottom: 40px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('source/nowe_logo.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('source/nowe_logo.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
