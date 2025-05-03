@@ -469,12 +469,12 @@ body {
 .feature-box h3 {
     color: var(--text-dark);
     margin-bottom: 15px;
-    font-size: 18px;
+    font-size: 1.2em;
 }
 
 .feature-box p {
     color: var(--text-dark);
-    font-size: 14px;
+    font-size: 0.9em;
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -625,7 +625,7 @@ body {
 }
 
 .rating-number {
-    font-size: 3.5em;
+    font-size: 3em;
     font-weight: bold;
     color: var(--text-light);
 }
@@ -637,7 +637,7 @@ body {
 
 .rating-count {
     color: var(--text-light);
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 .reviews-grid {
@@ -762,7 +762,7 @@ body {
 
 .info-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 15px;
     transition: transform var(--transition-speed);
 }
@@ -772,19 +772,45 @@ body {
 }
 
 .info-item .icon {
+    min-width: 32px;
+    width: 32px;
+    text-align: center;
     font-size: 24px;
     color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
 }
 
-.info-text h3 {
-    color: var(--text-dark);
-    margin-bottom: 5px;
+.info-item .info-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.info-item .info-text h3, .info-item .info-text h3 a {
+    text-align: left;
+    margin-bottom: 2px;
     font-size: 18px;
+    font-weight: bold;
+    color: var(--text-dark);
+    text-decoration: none;
+    display: inline-block;
 }
 
-.info-text p {
+.info-item .info-text h3 a:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+.info-item .info-text p {
     color: var(--text-dark);
     line-height: 1.6;
+    margin: 0 0 0 0;
+    font-size: 16px;
 }
 
 /* Map Box - Contact Page */
