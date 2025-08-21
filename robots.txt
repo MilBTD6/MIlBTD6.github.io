@@ -1,5 +1,29 @@
 User-agent: *
 Allow: /
 
+# Allow all search engines to crawl the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow crawling of unnecessary files
+Disallow: /source/original/
+Disallow: /*.jpg$
+Disallow: /*.png$
+
+# Allow crawling of important files
+Allow: /*.html$
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+
 # Sitemap location
-Sitemap: https://milbtd6.github.io/sitemap.xml 
+Sitemap: https://olaosk.pl/sitemap.xml
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1 
