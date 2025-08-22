@@ -1,0 +1,19 @@
+[
+  {
+    "author": "Użytkownik Google",
+    "rating": 5,
+    "text": "Świetne przygotowanie do egzaminu, bardzo polecam!",
+    "date": "2024-03-10",
+    "url": "https://maps.app.goo.gl/",
+    "published": true
+  },
+  {
+    "author": "Kursant",
+    "rating": 5,
+    "text": "Instruktorka cierpliwa i konkretna. Zdałem za pierwszym razem.",
+    "date": "2024-04-05",
+    "url": "https://maps.app.goo.gl/",
+    "published": false
+  }
+]
+

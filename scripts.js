@@ -74,54 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Testimonials Slider Functionality
-    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-    const testimonialDots = document.querySelectorAll('.testimonial-dots .dot');
-    let currentTestimonial = 0;
-    let testimonialInterval;
-
-    if (testimonialSlides.length > 0) {
-        // Function to show a specific testimonial
-        function showTestimonial(index) {
-            testimonialSlides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-
-            testimonialDots.forEach(dot => {
-                dot.classList.remove('active');
-            });
-
-            testimonialSlides[index].classList.add('active');
-            testimonialDots[index].classList.add('active');
-            
-            currentTestimonial = index;
-        }
-
-        // Function to advance to next testimonial
-        function nextTestimonial() {
-            const nextIndex = (currentTestimonial + 1) % testimonialSlides.length;
-            showTestimonial(nextIndex);
-        }
-
-        // Add click event listeners to dots
-        testimonialDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showTestimonial(index);
-                clearInterval(testimonialInterval);
-                startTestimonialInterval();
-            });
-        });
-
-        // Start auto-advance interval
-        function startTestimonialInterval() {
-            testimonialInterval = setInterval(nextTestimonial, 5000); // Change testimonial every 5 seconds
-        }
-
-        // Show the first testimonial by default and start auto-advance
-        showTestimonial(0);
-        startTestimonialInterval();
-    }
-
     // Hero Slider functionality
     const sliderContainer = document.querySelector('.slider-container');
     const dots = document.querySelectorAll('.slider-dots .dot');
@@ -186,5 +138,72 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize the slider
         showSlide(0);
         resetInterval();
+    }
+
+    // Google Reviews (curated) loader
+    const reviewsContainer = document.getElementById('reviews-list');
+    if (reviewsContainer) {
+        fetch('../data/reviews.json')
+            .then(function(response) { return response.ok ? response.json() : []; })
+            .then(function(allReviews) {
+                if (!Array.isArray(allReviews)) return;
+                const published = allReviews.filter(function(r) { return r && r.published; });
+                if (published.length === 0) {
+                    reviewsContainer.innerHTML = '';
+                    return;
+                }
+
+                var fragment = document.createDocumentFragment();
+                published.forEach(function(review) {
+                    var item = document.createElement('article');
+                    item.className = 'review-item';
+
+                    var rating = document.createElement('div');
+                    rating.className = 'review-rating';
+                    var stars = Math.max(0, Math.min(5, Number(review.rating || 5)));
+                    rating.textContent = '★★★★★'.slice(0, stars) + '☆☆☆☆☆'.slice(0, 5 - stars);
+
+                    var text = document.createElement('p');
+                    text.className = 'review-text';
+                    text.textContent = review.text || '';
+
+                    var meta = document.createElement('div');
+                    meta.className = 'review-meta';
+                    var author = document.createElement('span');
+                    author.className = 'review-author';
+                    author.textContent = review.author || 'Użytkownik Google';
+                    meta.appendChild(author);
+
+                    if (review.date) {
+                        var date = document.createElement('time');
+                        date.className = 'review-date';
+                        date.dateTime = review.date;
+                        date.textContent = review.date;
+                        meta.appendChild(document.createTextNode(' · '));
+                        meta.appendChild(date);
+                    }
+
+                    if (review.url) {
+                        var link = document.createElement('a');
+                        link.className = 'review-link';
+                        link.href = review.url;
+                        link.target = '_blank';
+                        link.rel = 'noopener noreferrer nofollow';
+                        link.textContent = 'Zobacz w Google';
+                        meta.appendChild(document.createTextNode(' · '));
+                        meta.appendChild(link);
+                    }
+
+                    item.appendChild(rating);
+                    item.appendChild(text);
+                    item.appendChild(meta);
+                    fragment.appendChild(item);
+                });
+
+                reviewsContainer.appendChild(fragment);
+            })
+            .catch(function() {
+                // silently ignore
+            });
     }
 });
