@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Google Reviews (curated) loader
     const reviewsContainer = document.getElementById('reviews-list');
     if (reviewsContainer) {
-        var googleReviewsUrl = 'https://www.google.com/search?client=firefox-b-d&sca_esv=c8be1566c129d7a0&sxsrf=AE3TifMUjAGq3Y0HliNBnxwvOgcH4o8hug:1755847059847&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E37xli2OV9Y0Jlv8bmc-H2DPBja6TW6dBFaX4WfeyYklUeh0AMdYQUZm7zSTPDxtXMEdK4k50qLBGWOm4_TYtb5wVsik&q=OSK+OLA+Opinie&sa=X&ved=2ahUKEwiu06CC8J2PAxWJKBAIHUuNCq4Q0bkNegQIJBAE&biw=1920&bih=947&dpr=1';
+        var googleReviewsUrl = 'https://www.google.com/search?client=firefox-b-d&sa=X&sca_esv=c8be1566c129d7a0&tbm=lcl&sxsrf=AE3TifODGG_xareuZwJlhotds3Ytwadd7w:1755847958631&q=OSK%20OLA%20Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDU0MrK0MDS2tDQ2MTMwsjQ0NtjAyPiKkc8_2FvB38dRwb8gMy8zdRErmgAAGCad6D0AAAA&rldimm=15122981399346029130&hl=pl-PL&ved=0CAYQ5foLahcKEwjIiq-u852PAxUAAAAAHQAAAAAQBQ&biw=1920&bih=947&dpr=1#lkt=LocalPoiReviews&arid=Ci9DQUlRQUNvZENodHljRjlvT2tsRmFtOXdaRkpqTWpabU5IUXdSbXc1YlY4eGJYYxAB';
         fetch('/data/reviews.json')
             .then(function(response) { return response.ok ? response.json() : []; })
             .then(function(allReviews) {
@@ -159,6 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     var item = document.createElement('article');
                     item.className = 'review-item';
 
+                    // Author on top
+                    var authorTop = document.createElement('div');
+                    authorTop.className = 'review-author';
+                    authorTop.textContent = review.author || 'Użytkownik Google';
+
                     var rating = document.createElement('div');
                     rating.className = 'review-rating';
                     var stars = Math.max(0, Math.min(5, Number(review.rating || 5)));
@@ -170,31 +175,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     var meta = document.createElement('div');
                     meta.className = 'review-meta';
-                    var author = document.createElement('span');
-                    author.className = 'review-author';
-                    author.textContent = review.author || 'Użytkownik Google';
-                    meta.appendChild(author);
 
                     if (review.date) {
                         var date = document.createElement('time');
                         date.className = 'review-date';
                         date.dateTime = review.date;
                         date.textContent = review.date;
-                        meta.appendChild(document.createTextNode(' · '));
+                        // add date separator only if there will be following content
                         meta.appendChild(date);
                     }
 
                     if (review.url) {
+                        if (meta.childNodes.length > 0) {
+                            meta.appendChild(document.createTextNode(' · '));
+                        }
                         var link = document.createElement('a');
                         link.className = 'review-link';
                         link.href = review.url;
                         link.target = '_blank';
                         link.rel = 'noopener noreferrer nofollow';
                         link.textContent = 'Zobacz w Google';
-                        meta.appendChild(document.createTextNode(' · '));
                         meta.appendChild(link);
                     }
 
+                    item.appendChild(authorTop);
                     item.appendChild(rating);
                     item.appendChild(text);
                     item.appendChild(meta);

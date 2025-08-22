@@ -2228,6 +2228,7 @@ footer {
 .google-reviews-section { padding: 40px 0; }
 #reviews-list { max-width: 900px; margin: 0 auto; }
 .review-item { background: #ffffff; border: 1px solid #eee; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.review-author { font-weight: bold; color: #1a1a1a; margin-bottom: 6px; }
 .review-rating { color: #f5a623; font-size: 18px; margin-bottom: 8px; letter-spacing: 1px; }
 .review-text { margin: 0 0 8px 0; line-height: 1.6; color: #1a1a1a; }
 .review-meta { color: #666; font-size: 14px; }
