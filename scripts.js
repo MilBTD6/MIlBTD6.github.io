@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Google Reviews (curated) loader
     const reviewsContainer = document.getElementById('reviews-list');
     if (reviewsContainer) {
+        var googleReviewsUrl = 'https://www.google.com/search?client=firefox-b-d&sca_esv=c8be1566c129d7a0&sxsrf=AE3TifMUjAGq3Y0HliNBnxwvOgcH4o8hug:1755847059847&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E37xli2OV9Y0Jlv8bmc-H2DPBja6TW6dBFaX4WfeyYklUeh0AMdYQUZm7zSTPDxtXMEdK4k50qLBGWOm4_TYtb5wVsik&q=OSK+OLA+Opinie&sa=X&ved=2ahUKEwiu06CC8J2PAxWJKBAIHUuNCq4Q0bkNegQIJBAE&biw=1920&bih=947&dpr=1';
         fetch('/data/reviews.json')
             .then(function(response) { return response.ok ? response.json() : []; })
             .then(function(allReviews) {
@@ -201,6 +202,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 reviewsContainer.appendChild(fragment);
+
+                // Add CTA to view all Google reviews
+                var ctaWrap = document.createElement('div');
+                ctaWrap.className = 'google-maps-link';
+                var cta = document.createElement('a');
+                cta.className = 'btn';
+                cta.href = googleReviewsUrl;
+                cta.target = '_blank';
+                cta.rel = 'noopener noreferrer nofollow';
+                cta.textContent = 'Zobacz wszystkie opinie w Google';
+                ctaWrap.appendChild(cta);
+                reviewsContainer.appendChild(ctaWrap);
             })
             .catch(function() {
                 reviewsContainer.innerHTML = '<p class="review-meta">Nie udało się wczytać opinii.</p>';
