@@ -143,13 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Google Reviews (curated) loader
     const reviewsContainer = document.getElementById('reviews-list');
     if (reviewsContainer) {
-        fetch('../data/reviews.json')
+        fetch('/data/reviews.json')
             .then(function(response) { return response.ok ? response.json() : []; })
             .then(function(allReviews) {
                 if (!Array.isArray(allReviews)) return;
                 const published = allReviews.filter(function(r) { return r && r.published; });
                 if (published.length === 0) {
-                    reviewsContainer.innerHTML = '';
+                    reviewsContainer.innerHTML = '<p class="review-meta">Brak opublikowanych opinii.</p>';
                     return;
                 }
 
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 reviewsContainer.appendChild(fragment);
             })
             .catch(function() {
-                // silently ignore
+                reviewsContainer.innerHTML = '<p class="review-meta">Nie udało się wczytać opinii.</p>';
             });
     }
 });
