@@ -143,7 +143,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Google Reviews (curated) loader
     const reviewsContainer = document.getElementById('reviews-list');
     if (reviewsContainer) {
+        // 1. Set your preferred URL that goes straight to viewing opinions (works for PC, Chrome Mobile, iOS, etc.)
         var googleReviewsUrl = 'https://search.google.com/local/reviews?placeid=ChIJt8TvwxpbGkcRSiLcLHWf39E';
+        // 2. Detect if the user is browsing on Firefox AND on a mobile device/Android
+        var ua = navigator.userAgent.toLowerCase();
+        var isFirefoxMobile = ua.includes('firefox') && (ua.includes('android') || ua.includes('mobile'));
+        // 3. If they are on Firefox Mobile, swap to a safe fallback link to bypass Google's 404 server bug
+        if (isFirefoxMobile) {
+            googleReviewsUrl = 'https://www.google.com/search?q=OSK+OLA+Zduńska+Wola+opinie#lkt=LocalPoiReviews';
+        }
+
         fetch('/data/reviews.json')
             .then(function(response) { return response.ok ? response.json() : []; })
             .then(function(allReviews) {
