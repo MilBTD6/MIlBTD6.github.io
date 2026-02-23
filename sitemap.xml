@@ -5,24 +5,4 @@
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
-    <url>
-        <loc>https://olaosk.pl/oferta/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://olaosk.pl/wymagania/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://olaosk.pl/opinie/</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://olaosk.pl/kontakt/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-</urlset> 
+</urlset>
