@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Google Reviews (curated) loader
     const reviewsContainer = document.getElementById('reviews-list');
     if (reviewsContainer) {
-        var googleReviewsUrl = 'https://www.google.com/search?client=firefox-b-d&sa=X&sca_esv=c8be1566c129d7a0&tbm=lcl&sxsrf=AE3TifODGG_xareuZwJlhotds3Ytwadd7w:1755847958631&q=OSK%20OLA%20Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDU0MrK0MDS2tDQ2MTMwsjQ0NtjAyPiKkc8_2FvB38dRwb8gMy8zdRErmgAAGCad6D0AAAA&rldimm=15122981399346029130&hl=pl-PL&ved=0CAYQ5foLahcKEwjIiq-u852PAxUAAAAAHQAAAAAQBQ&biw=1920&bih=947&dpr=1#lkt=LocalPoiReviews&arid=Ci9DQUlRQUNvZENodHljRjlvT2tsRmFtOXdaRkpqTWpabU5IUXdSbXc1YlY4eGJYYxAB';
+        var googleReviewsUrl = 'https://search.google.com/local/reviews?placeid=ChIJt8TvwxpbGkcRSiLcLHWf39E';
         fetch('/data/reviews.json')
             .then(function(response) { return response.ok ? response.json() : []; })
             .then(function(allReviews) {
