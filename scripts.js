@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var isFirefoxMobile = ua.includes('firefox') && (ua.includes('android') || ua.includes('mobile'));
         // 3. If they are on Firefox Mobile, swap to a safe fallback link to bypass Google's 404 server bug
         if (isFirefoxMobile) {
-            googleReviewsUrl = 'https://www.google.com/search?q=OSK+OLA+Zduńska+Wola+opinie#lkt=LocalPoiReviews';
+            googleReviewsUrl = 'https://g.page/r/CUoi3Cx1n9_REBM/review';
         }
 
         fetch('/data/reviews.json')
